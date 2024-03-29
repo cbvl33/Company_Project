@@ -29,7 +29,6 @@ namespace WebApplication1.Controllers
             };
             LoginResponse resp = DoLogin.Login(loginData);
 
-
             return View();
         
         }
