@@ -17,6 +17,7 @@ namespace WebApplication1.Controllers
         {
             var gg = new BusinessLogic.BusinessLogic();
             DoLogin = gg.GetLoginBL();
+
         }
 
         [HttpPost]
