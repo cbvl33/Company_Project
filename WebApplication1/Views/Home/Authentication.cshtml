@@ -3,101 +3,122 @@
     ViewBag.Title = "Authentication";
     Layout = "~/Views/_LayoutPage1.cshtml";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
 
-<p>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/colorlib-regform-7/fonts/material-icon/css/material-design-iconic-font.min.css">
 
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/colorlib-regform-7/css/style.css">
+</head>
+<body>
 
+    <div class="main">
 
-
-
-</p>
-
-
-<main id="main">
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                         class="img-fluid" alt="Sample image">
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form action="/Login/LoginAction" method="post">
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Войти через</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                        </div>
-
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Или</p>
-                        </div>
-
-                        <!-- Поле для ввода email -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form3Example3" name="email" class="form-control form-control-lg"
-                                   placeholder="Введите ваш email" required />
-                            <label class="form-label" for="form3Example3">Адрес электронной почты</label>
-                        </div>
-
-                        <!-- Поле для ввода пароля -->
-                        <div class="form-outline mb-3">
-                            <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
-                                   placeholder="Введите пароль" required />
-                            <label class="form-label" for="form3Example4">Пароль</label>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Флажок "Запомнить меня" -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" name="remember_me" />
-                                <label class="form-check-label" for="form2Example3">
-                                    Запомнить меня
-                                </label>
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" />
                             </div>
-                            <a href="#!" class="text-body">Забыли пароль?</a>
-                        </div>
-
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                Войти
-                            </button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">
-                                Нет аккаунта? <a href="#!" class="link-danger">Зарегистрируйтесь</a>
-                            </p>
-                        </div>
-                    </form>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="~/colorlib-regform-7/images/signup-image.jpg" alt="sign up image"></figure>
+                        <a href="#" class="signup-image-link">I am already a member</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-       
-            <!-- Copyright -->
-            <!-- Right -->
-            <div>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="#!" class="text-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+        <!-- Sign in Form -->
+        <section class="sign-in" style="display: none;">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="~/colorlib-regform-7/images/signin-image.jpg" alt="sign in image"></figure>
+                        <a href="#" class="signin-create-account-link">Create an account</a>
+                    </div>
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign in</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
             </div>
-            <!-- Right -->
-        </div>
-    </section>
-</main><!-- End #main -->
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="~/colorlib-regform-7/vendor/jquery/jquery.min.js"></script>
+    <script src="~/colorlib-regform-7/js/main.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var signinLink = document.querySelector(".signup-image-link");
+            var signupLink = document.querySelector(".signin-create-account-link");
+            var signUpForm = document.querySelector(".signup-content");
+            var signInForm = document.querySelector(".sign-in");
+
+            signinLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                signUpForm.style.display = "none";
+                signInForm.style.display = "block";
+            });
+
+            signupLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                signInForm.style.display = "none";
+                signUpForm.style.display = "block";
+            });
+        });
+    </script>
+</body>
+</html>
+
