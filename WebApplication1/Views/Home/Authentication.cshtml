@@ -1,124 +1,77 @@
 ﻿
 @{
     ViewBag.Title = "Authentication";
-    Layout = "~/Views/_LayoutPage1.cshtml";
+    Layout = "~/Views/_LayoutPage2.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
-
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="~/colorlib-regform-7/fonts/material-icon/css/material-design-iconic-font.min.css">
-
-    <!-- Main css -->
-    <link rel="stylesheet" href="~/colorlib-regform-7/css/style.css">
+    <title>Login Page</title>
+    <!-- Подключаем внешний файл стилей CSS -->
+    <link rel="stylesheet" href="~/assets/css/s1.css">
 </head>
 <body>
 
-    <div class="main">
-
-        <!-- Sign up form -->
-        <section class="signup">
-            <div class="container">
-                <div class="signup-content">
-                    <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
-                        <form method="POST" class="register-form" id="register-form">
-                            <div class="form-group">
-                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="name" id="name" placeholder="Your Name" />
+    <div class="row">
+        <div class="col-md-6 mx-auto p-0">
+            <div class="card">
+                <div class="login-box">
+                    <div class="login-snip">
+                        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
+                        <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+                        <div class="login-space">
+                            <div class="login">
+                                <div class="group">
+                                    <label for="user" class="label">Username</label>
+                                    <input id="user" type="text" class="input" placeholder="Enter your username">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Password</label>
+                                    <input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password">
+                                </div>
+                                <div class="group">
+                                    <input id="check" type="checkbox" class="check" checked>
+                                    <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                                </div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Sign In">
+                                </div>
+                                <div class="hr"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" />
+                            <div class="sign-up-form">
+                                <div class="group">
+                                    <label for="user" class="label">Username</label>
+                                    <input id="user" type="text" class="input" placeholder="Create your Username">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Password</label>
+                                    <input id="pass" type="password" class="input" data-type="password" placeholder="Create your password">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Repeat Password</label>
+                                    <input id="pass" type="password" class="input" data-type="password" placeholder="Repeat your password">
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Email Address</label>
+                                    <input id="pass" type="text" class="input" placeholder="Enter your email address">
+                                </div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Sign Up">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot">
+                                    <label for="tab-1">Already Member?</label>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="pass" id="pass" placeholder="Password" />
-                            </div>
-                            <div class="form-group">
-                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" />
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register" />
-                            </div>
-                        </form>
-                    </div>
-                    <div class="signup-image">
-                        <figure><img src="~/colorlib-regform-7/images/signup-image.jpg" alt="sign up image"></figure>
-                        <a href="#" class="signup-image-link">I am already a member</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sign in Form -->
-        <section class="sign-in" style="display: none;">
-            <div class="container">
-                <div class="signin-content">
-                    <div class="signin-image">
-                        <figure><img src="~/colorlib-regform-7/images/signin-image.jpg" alt="sign in image"></figure>
-                        <a href="#" class="signin-create-account-link">Create an account</a>
-                    </div>
-                    <div class="signin-form">
-                        <h2 class="form-title">Sign in</h2>
-                        <form method="POST" class="register-form" id="login-form">
-                            <div class="form-group">
-                                <label for="email"><i class="zmdi zmdi-email"></i></label>
-                                <input type="email" name="email" id="email" placeholder="Your Email" />
-                            </div>
-                            <div class="form-group">
-                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password" />
-                            </div>
-                            <div class="form-group">
-                                <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
-                                <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                            </div>
-                            <div class="form-group form-button">
-                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
-                            </div>
-                        </form>
-                        
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
     </div>
 
-    <!-- JS -->
-    <script src="~/colorlib-regform-7/vendor/jquery/jquery.min.js"></script>
-    <script src="~/colorlib-regform-7/js/main.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var signinLink = document.querySelector(".signup-image-link");
-            var signupLink = document.querySelector(".signin-create-account-link");
-            var signUpForm = document.querySelector(".signup-content");
-            var signInForm = document.querySelector(".sign-in");
-
-            signinLink.addEventListener("click", function (event) {
-                event.preventDefault();
-                signUpForm.style.display = "none";
-                signInForm.style.display = "block";
-            });
-
-            signupLink.addEventListener("click", function (event) {
-                event.preventDefault();
-                signInForm.style.display = "none";
-                signUpForm.style.display = "block";
-            });
-        });
-    </script>
 </body>
 </html>
 
