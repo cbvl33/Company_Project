@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApplication1.BusinessLogic.Core
+namespace WebApplication1.Domain.Enums
 {
-    internal class AdminApi
+    public enum Levels
     {
+        None = 0,
+        User=1,
+        Admin = 2
     }
 }

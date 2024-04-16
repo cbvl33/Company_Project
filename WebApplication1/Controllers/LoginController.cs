@@ -7,26 +7,30 @@ using WebApplication1.BusinessLogic.Interfaces;
 using WebApplication1.Domain.Entities.Respond;
 using WebApplication1.Domain.Entities.User;
 using WebApplication1.Models.Authentication;
+using WebApplication1.Models.User;
 
 namespace WebApplication1.Controllers
 {
     public class LoginController : Controller
     {
-        internal ILogin DoLogin;
+        private readonly ILogin DoLogin;
         public LoginController()
         {
-            var gg = new BusinessLogic.BusinessLogic();
-            DoLogin = gg.GetLoginBL();
+            var tmp = new BusinessLogic.BusinessLogic();
+            DoLogin = tmp.GetLoginBL();
 
         }
 
         [HttpPost]
-        public ActionResult LoginAction(MLogin mLogin) 
+        public ActionResult LoginAction(UActionLogin data) 
         {
+            var address = base.Request.UserHostAddress;
             ULoginData loginData = new ULoginData
-            {
-                Email = mLogin.Email,
-                Password = mLogin.Password,
+            { 
+                Credential = data.Credential,
+                Password = data.Password,
+                LastLogin = DateTime.Now,
+                UserIP = address
             };
             LoginResponse resp = DoLogin.Login(loginData);
 

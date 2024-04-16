@@ -8,6 +8,7 @@ namespace WebApplication1.Domain.Entities.Respond
 {
     public class LoginResponse
     {
-        public bool succes { get; set; }
+        public bool Status { get; set; }
+        public string StatusMessage { get; set; }
     }
 }
