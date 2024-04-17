@@ -15,8 +15,8 @@ namespace WebApplication1.Controllers
         internal ILogin DoLogin;
         public LoginController()
         {
-            var gg = new BusinessLogic.BusinessLogic();
-            DoLogin = gg.GetLoginBL();
+            var tmp = new BusinessLogic.BusinessLogic();
+            DoLogin = tmp.GetLoginBL();
         }
 
         [HttpPost]

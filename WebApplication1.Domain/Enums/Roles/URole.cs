@@ -10,7 +10,6 @@ namespace WebApplication1.Domain.Enums.Roles
     {
         None,
         User,
-        Moderator,
         Admin
     }
 }
