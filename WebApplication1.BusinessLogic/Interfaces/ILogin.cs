@@ -12,5 +12,6 @@ namespace WebApplication1.BusinessLogic.Interfaces
     {
         LoginResponse RegisterUsers(URegisterData uData);
         LoginResponse Login(ULoginData loginData);
+        LoginResponse GenerateUserSessionActionFlow(ULoginData loginData);
     }
 }

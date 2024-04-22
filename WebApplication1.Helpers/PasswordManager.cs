@@ -9,7 +9,7 @@ namespace WebApplication1.Helpers
 {
     public static class PasswordManager
     {
-        public static string Md5crypt(string password)
+        public static string Md5Crypt(string password)
         {
             MD5 md5Hash = MD5.Create();
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(password));

@@ -38,7 +38,10 @@ namespace WebApplication1.Controllers
                 UserIP = address
             };
             LoginResponse resp = DoLogin.Login(loginData);
-
+            if (resp.Status)
+            {
+                LoginResponse auth = DoLogin.GenerateUserSessionActionFlow(loginData);
+            }
 
             return null;
 

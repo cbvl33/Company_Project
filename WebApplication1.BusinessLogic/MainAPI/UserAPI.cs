@@ -27,14 +27,25 @@ namespace WebApplication1.BusinessLogic.MainAPI
                 return new LoginResponse { Status = true };
             }
             return new LoginResponse { Status = false, StatusMessage = "NO USER WITH THIS EMAIL" };
-          // LoginResponse response = new LoginResponse();
-          // if (uld.Email == "lera_ira@gmail.com")
-          // {
-          //     response.succes = true;
-          //     return response;
-          // }
-          // response.succes = false;
-          // return response;
+         
+        }
+
+        internal LoginResponse GenerateUserSession(ULoginData uld)
+        {
+            UserDTO local;
+            var password = PasswordManager.Md5Crypt(uld.Password);
+            using (var db = new UserContext())
+            {
+                local = db.Users.FirstOrDefault(x => x.Email == uld.Email);
+
+            }
+
+            if (local == null)
+            {
+                return new LoginResponse { Status = false, StatusMessage = "WRONG USERNAME OR PASSWORD" };
+            }
+
+            return new LoginResponse { Status = true };
         }
 
         internal LoginResponse RegisterNewUsers(URegisterData data)
@@ -56,7 +67,7 @@ namespace WebApplication1.BusinessLogic.MainAPI
 
             var user = new UserDTO 
             {
-                Password = PasswordManager.Md5crypt(data.Password),
+                Password = PasswordManager.Md5Crypt(data.Password),
                 Email = data.Email,
                 UserName = data.Name,
                 LastLogin = data.LastLogin,

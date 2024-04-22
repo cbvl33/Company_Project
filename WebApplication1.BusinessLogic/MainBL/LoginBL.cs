@@ -21,5 +21,10 @@ namespace WebApplication1.BusinessLogic.MainBL
         {
             return RegisterNewUsers(loginData);
         }
+
+        public LoginResponse GenerateUserSessionActionFlow(ULoginData loginData)
+        {
+            return GenerateUserSession(loginData);
+        }
     }
 }
