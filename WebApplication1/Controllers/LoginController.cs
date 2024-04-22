@@ -21,13 +21,18 @@ namespace WebApplication1.Controllers
 
         }
 
+        public ActionResult Index()
+        {
+            return View(new UActionLogin());
+        }
+
         [HttpPost]
-        public ActionResult LoginAction(UActionLogin data) 
+        public ActionResult LoginAction(UActionLogin data)
         {
             var address = base.Request.UserHostAddress;
             ULoginData loginData = new ULoginData
-            { 
-                Credential = data.Credential,
+            {
+                Email = data.Email,
                 Password = data.Password,
                 LastLogin = DateTime.Now,
                 UserIP = address
@@ -35,8 +40,29 @@ namespace WebApplication1.Controllers
             LoginResponse resp = DoLogin.Login(loginData);
 
 
-            return View();
-        
+            return null;
+
+        }
+
+        public ActionResult Register()
+        {
+            return View(new UActionRegister());
+        }
+
+        [HttpPost]
+        public ActionResult RegisterAction(UActionRegister data)
+        {
+            var address = base.Request.UserHostAddress;
+            var uData = new URegisterData
+            {
+                Name = data.Name,
+                Email = data.Email,
+                Password = data.Password,
+                LastLogin = DateTime.Now,
+                UserIP = address
+            };
+            LoginResponse resp = DoLogin.RegisterUsers(uData);
+            return null;
         }
     }
 }

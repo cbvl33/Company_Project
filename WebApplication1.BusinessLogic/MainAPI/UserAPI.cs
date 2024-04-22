@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using WebApplication1.BusinessLogic.DBModel;
 using WebApplication1.Domain.Entities.Respond;
 using WebApplication1.Domain.Entities.User;
+using WebApplication1.Domain.Enums;
+using WebApplication1.Helpers;
 
 namespace WebApplication1.BusinessLogic.MainAPI
 {
@@ -17,7 +19,7 @@ namespace WebApplication1.BusinessLogic.MainAPI
             UserDTO local;
             using (var db = new UserContext())
             {
-                local = db.Users.FirstOrDefault(x => x.Email == uld.Credential);
+                local = db.Users.FirstOrDefault(x => x.Email == uld.Email);
               
             }
             if (local != null)
@@ -33,6 +35,46 @@ namespace WebApplication1.BusinessLogic.MainAPI
           // }
           // response.succes = false;
           // return response;
+        }
+
+        internal LoginResponse RegisterNewUsers(URegisterData data)
+        {
+            UserDTO local;
+            using (var db = new UserContext())
+            {
+                local = db.Users.FirstOrDefault(x => x.Email == data.Email);
+
+            }
+            if (local != null)
+            {
+                return new LoginResponse
+                {
+                    Status = false,
+                    StatusMessage = "This username is already registered"
+                };
+            }
+
+            var user = new UserDTO 
+            {
+                Password = PasswordManager.Md5crypt(data.Password),
+                Email = data.Email,
+                UserName = data.Name,
+                LastLogin = data.LastLogin,
+                UserIp = data.UserIP,
+                Created = DateTime.Now,
+                Levels = Levels.User,
+            };
+
+            using (var db = new UserContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+
+            return new LoginResponse 
+            { 
+                Status = true            
+            };
         }
     }
 }

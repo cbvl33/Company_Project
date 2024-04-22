@@ -16,5 +16,10 @@ namespace WebApplication1.BusinessLogic.MainBL
         {
             return LoginCheck(loginData);
         }
+
+        public LoginResponse RegisterUsers(URegisterData loginData)
+        {
+            return RegisterNewUsers(loginData);
+        }
     }
 }

@@ -1,103 +1,63 @@
-﻿
-@{
-    ViewBag.Title = "Authentication";
-    Layout = "~/Views/_LayoutPage1.cshtml";
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/_LayoutPage2.cshtml";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<p>
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="~/assets/css/s1.css">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+            <!-- Форма регистрации -->
+            <form class="register-form" action="/Login/RegisterAction" method="post">
+                <input type="text" name="name" placeholder="Name" required />
+                <input type="email" name="email" placeholder="Email Address" required />
+                <input type="password" name="password" placeholder="Password" required />
 
 
+                <button type="submit">Create</button>
+                <p class="message">Already registered? <a href="#" id="switch-to-login">Sign In</a></p>
+            </form>
 
-
-
-</p>
-
-
-<main id="main">
-    <section class="vh-100">
-        <div class="container-fluid h-custom">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                         class="img-fluid" alt="Sample image">
-                </div>
-                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                    <form action="/Login/LoginAction" method="post">
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                            <p class="lead fw-normal mb-0 me-3">Войти через</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
-                                <i class="fab fa-linkedin-in"></i>
-                            </button>
-                        </div>
-
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0">Или</p>
-                        </div>
-
-                        <!-- Поле для ввода email -->
-                        <div class="form-outline mb-4">
-                            <input type="email" id="form3Example3" name="email" class="form-control form-control-lg"
-                                   placeholder="Введите ваш email" required />
-                            <label class="form-label" for="form3Example3">Адрес электронной почты</label>
-                        </div>
-
-                        <!-- Поле для ввода пароля -->
-                        <div class="form-outline mb-3">
-                            <input type="password" id="form3Example4" name="password" class="form-control form-control-lg"
-                                   placeholder="Введите пароль" required />
-                            <label class="form-label" for="form3Example4">Пароль</label>
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center">
-                            <!-- Флажок "Запомнить меня" -->
-                            <div class="form-check mb-0">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" name="remember_me" />
-                                <label class="form-check-label" for="form2Example3">
-                                    Запомнить меня
-                                </label>
-                            </div>
-                            <a href="#!" class="text-body">Забыли пароль?</a>
-                        </div>
-
-                        <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">
-                                Войти
-                            </button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">
-                                Нет аккаунта? <a href="#!" class="link-danger">Зарегистрируйтесь</a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <!-- Форма входа -->
+            <form class="login-form" action="/Login/LoginAction" method="post">
+                <input type="email" name="email" placeholder="Email Address" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <button type="submit">Login</button>
+                <p class="message">Not registered? <a href="#" id="switch-to-register">Create an account</a></p>
+            </form>
         </div>
+    </div>
 
-       
-            <!-- Copyright -->
-            <!-- Right -->
-            <div>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="#!" class="text-white me-4">
-                    <i class="fab fa-google"></i>
-                </a>
-                <a href="#!" class="text-white">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-            <!-- Right -->
-        </div>
-    </section>
-</main><!-- End #main -->
+    <!-- Подключаем jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- JavaScript для переключения между формами -->
+    <script>
+        $(document).ready(function () {
+            // Переключение на форму входа
+            $('#switch-to-login').click(function (event) {
+                event.preventDefault();
+                $('.register-form').hide();
+                $('.login-form').show();
+            });
+
+            // Переключение на форму регистрации
+            $('#switch-to-register').click(function (event) {
+                event.preventDefault();
+                $('.login-form').hide();
+                $('.register-form').show();
+            });
+
+            // Инициализация скрытия формы регистрации
+            $('.register-form').hide();
+        });
+    </script>
+</body>
+</html>

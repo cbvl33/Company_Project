@@ -10,6 +10,7 @@ namespace WebApplication1.BusinessLogic.Interfaces
 {
     public interface ILogin
     {
-       LoginResponse Login(ULoginData loginData);
+        LoginResponse RegisterUsers(URegisterData uData);
+        LoginResponse Login(ULoginData loginData);
     }
 }
