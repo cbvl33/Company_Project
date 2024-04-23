@@ -58,7 +58,9 @@
     <Compile Include="Entities\Respond\LoginResponse.cs" />
     <Compile Include="Entities\L&amp;R\ULoginData.cs" />
     <Compile Include="Entities\L&amp;R\URegisterData.cs" />
-    <Compile Include="Entities\L&amp;R\UserDTO.cs" />
+    <Compile Include="Entities\User\DbTable\UDbAddInfo.cs" />
+    <Compile Include="Entities\User\DbTable\UDbSession.cs" />
+    <Compile Include="Entities\User\DbTable\UserDTO.cs" />
     <Compile Include="Enums\Levels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
