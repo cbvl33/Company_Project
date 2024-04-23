@@ -13,5 +13,6 @@ namespace WebApplication1.BusinessLogic.DBModel
         public SessionContext() : base("name=WebApplication1") { }
 
         public virtual DbSet<UDbSession> Sessions { get; set; }
+        //////
     }
 }
