@@ -55,10 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Product\PDbTable\PDbDetail.cs" />
+    <Compile Include="Entities\Product\PDbTable\PDbTable.cs" />
+    <Compile Include="Entities\Product\ProductModel\ProductDetails.cs" />
     <Compile Include="Entities\Respond\LoginResponse.cs" />
-    <Compile Include="Entities\L&amp;R\ULoginData.cs" />
-    <Compile Include="Entities\L&amp;R\URegisterData.cs" />
-    <Compile Include="Entities\L&amp;R\UserDTO.cs" />
+    <Compile Include="Entities\Respond\ProdResponse.cs" />
+    <Compile Include="Entities\User\Models\ULoginData.cs" />
+    <Compile Include="Entities\User\Models\UMinData.cs" />
+    <Compile Include="Entities\User\Models\URegisterData.cs" />
+    <Compile Include="Entities\User\UDbTable\UDbSession.cs" />
+    <Compile Include="Entities\User\UDbTable\UserDTO.cs" />
     <Compile Include="Enums\Levels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

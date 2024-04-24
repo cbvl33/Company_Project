@@ -41,8 +41,11 @@ namespace WebApplication1.Controllers
             if (resp.Status)
             {
                 LoginResponse auth = DoLogin.GenerateUserSessionActionFlow(loginData);
+                if (resp.Status)
+                {
+                    return View("~/Views/Home/Index.cshtml");
+                }
             }
-
             return null;
 
         }
@@ -65,6 +68,10 @@ namespace WebApplication1.Controllers
                 UserIP = address
             };
             LoginResponse resp = DoLogin.RegisterUsers(uData);
+            if (resp.Status)
+            {
+                return View("~/Views/Home/Index.cshtml");
+            }
             return null;
         }
     }

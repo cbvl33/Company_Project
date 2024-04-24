@@ -400,6 +400,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Attribute\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApplication1.BusinessLogic\WebApplication1.BusinessLogic.csproj">

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Helpers
+namespace WebApplication1.Domain.Entities.Product.ProductModel
 {
-    public class Class1
+    internal class ProductDetails
     {
     }
 }
