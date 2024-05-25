@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace WebApplication1.BusinessLogic
 {
     internal class SessionBL
-    {
+    {///
     }
 }
