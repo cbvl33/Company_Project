@@ -12,4 +12,4 @@ namespace WebApplication1.Domain.Enums
         User=1,
         Admin = 2
     }
-}
+} //
