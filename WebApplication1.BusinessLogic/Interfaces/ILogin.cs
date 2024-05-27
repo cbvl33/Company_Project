@@ -12,12 +12,12 @@ namespace WebApplication1.BusinessLogic.Interfaces
 {
     public interface ILogin
     {
-        LoginResponse RegisterUsers(URegisterData uData);
-        LoginResponse Login(ULoginData loginData);
-        LoginResponse GenerateUserSessionActionFlow(ULoginData loginData);
-        HttpCookie CookieGenerate(string Uname);
-        UMinData GetUserByCookie(string cookieName);
-        void CloseCurrentSession(string sessionName);
+        //LoginResponse RegisterUsers(URegisterData uData);
+        //LoginResponse Login(ULoginData loginData);
+        LoginResponse UserLogin(ULoginData data);
+        HttpCookie GenCookie(string loginCredential);
+        UMinData GetUserByCookie(string apiCookieValue);
+        //void CloseCurrentSession(string sessionName);
 
 
     }

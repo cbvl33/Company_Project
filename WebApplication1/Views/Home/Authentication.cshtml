@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿
+@{
+    ViewBag.Title = "Authentication";
     Layout = "~/Views/_LayoutPage2.cshtml";
 }
 <!DOCTYPE html>
@@ -15,18 +16,19 @@
     <div class="login-page">
         <div class="form">
             <!-- Форма регистрации -->
-            <form class="register-form" action="/Login/RegisterAction" method="post">
+            <form class="register-form" action="/Login/Authentication" method="post">
+                @Html.AntiForgeryToken()
                 <input type="text" name="name" placeholder="Name" required />
                 <input type="email" name="email" placeholder="Email Address" required />
                 <input type="password" name="password" placeholder="Password" required />
-
-
                 <button type="submit">Create</button>
                 <p class="message">Already registered? <a href="#" id="switch-to-login">Sign In</a></p>
             </form>
 
             <!-- Форма входа -->
-            <form class="login-form" action="/Login/LoginAction" method="post">
+            <form class="login-form" action="/Login/Authentication" method="post">
+                @Html.AntiForgeryToken()
+
                 <input type="email" name="email" placeholder="Email Address" required />
                 <input type="password" name="password" placeholder="Password" required />
                 <button type="submit">Login</button>
@@ -34,6 +36,7 @@
             </form>
         </div>
     </div>
+
 
     <!-- Подключаем jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

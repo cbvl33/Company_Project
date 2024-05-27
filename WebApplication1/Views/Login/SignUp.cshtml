@@ -1,0 +1,49 @@
+﻿@using System.Web.Optimization
+@model WebApplication1.Models.User.UserRegistration
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
+
+            </div>
+            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+
+                <div class="row g-3">
+
+                    @using (Html.BeginForm("SignUp", "Login", FormMethod.Post, new { @id = "LoginForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationMessage("")
+                        <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Почта</small></small></small></small></h6>
+                            <br />
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Почта", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Имя</small></small></small></small></h6>
+                            <br />
+                            @Html.TextBoxFor(x => x.UserName, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Имя", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.UserName)
+                        </div>
+                        <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Пароль</small></small></small></small></h6>
+                            <br />
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Пароль", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.Password)
+                        </div>
+                        <button class="btn btn-primary w-100 py-3" type="submit">Регистрация</button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
+
+        </div>
+    </div>
+</div>

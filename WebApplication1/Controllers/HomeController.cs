@@ -3,60 +3,156 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.BusinessLogic.Interfaces;
+using WebApplication1.Domain.Entities.User.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        // GET: Home
+        private readonly ILogin _session;
+        public HomeController()
+        {
+            var bl = new BusinessLogic.BusinessLogic();
+            _session = bl.GetLoginBL();
+        }
         public ActionResult Index()
         {
-            return View();
-        }
-        public ActionResult About()
-        {
-            return View();
-        }
-        public ActionResult Blog()
-        {
-            return View();
-        }
-        public ActionResult Blog_Single()
-        {
-            return View();
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
         }
         public ActionResult Contact()
         {
-            return View();
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
         }
-        public ActionResult Portfolio()
+        public ActionResult About()
         {
-            return View();
-        }
-        public ActionResult Portfolio_Details()
-        {
-            return View();
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
         }
         public ActionResult Pricing()
         {
-            return View();
-        }
-        public ActionResult Services()
-        {
-            return View();
-        }
-        public ActionResult Team()
-        {
-            return View();
-        }
-        public ActionResult Testimonials()
-        {
-            return View();
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
         }
 
-        public ActionResult Authentication()
+        public ActionResult Testimonials()
         {
-            return View();
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
         }
+
+        public ActionResult Services()
+        {
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty); 
+        }
+
+        public ActionResult Portfolio ()
+        {
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
+        }
+
+        public ActionResult Blog ()
+        {
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
+        }
+
+        public ActionResult Blog_Single()
+        {
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
+        }
+
+        public ActionResult Team()
+        {
+            SessionStatus();
+            var apiCookie = Request.Cookies["X-KEY"];
+            if (apiCookie != null)
+            {
+                var profile = _session.GetUserByCookie(apiCookie.Value);
+                return View(profile);
+            }
+            var empty = new UMinData();
+            empty.Level = Domain.Enums.Levels.None;
+            return View(empty);
+        }
+
+
     }
 }

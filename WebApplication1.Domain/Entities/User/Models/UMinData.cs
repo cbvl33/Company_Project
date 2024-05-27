@@ -9,8 +9,10 @@ namespace WebApplication1.Domain.Entities.User.Models
 {
     public class UMinData
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public Levels Level { get; set; }
+        public DateTime LastLogin { get; set; }
+        public string UserIp { get; set; }
     }
 }

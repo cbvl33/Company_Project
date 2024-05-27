@@ -9,7 +9,7 @@ namespace WebApplication1.Domain.Enums
     public enum Levels
     {
         None = 0,
-        User=1,
+        User = 1,
         Admin = 2
     }
 } //

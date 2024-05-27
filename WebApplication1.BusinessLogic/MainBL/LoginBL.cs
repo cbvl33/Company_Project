@@ -13,35 +13,34 @@ using WebApplication1.BusinessLogic.MainAPI;
 namespace WebApplication1.BusinessLogic.MainBL
 {
     public class LoginBL : UserAPI, ILogin
-    {
-        public LoginResponse Login(ULoginData loginData)
+    {//убираем
+     //public LoginResponse Login(ULoginData loginData)
+     //{
+     //    return LoginCheck(loginData);
+     //}
+     // убираем
+     //public LoginResponse RegisterUsers(URegisterData loginData)
+     //{
+     //    return RegisterNewUsers(loginData);
+     //}
+     // убираем под вопросом 
+     //public LoginResponse GenerateUserSessionActionFlow(ULoginData uData)
+     //{
+     //    return GenerateUserSession(uData);
+     //}
+        /// 
+        public LoginResponse UserLogin(ULoginData data)
         {
-            return LoginCheck(loginData);
+            return UserLoginAction(data);
+        }
+        public HttpCookie GenCookie(string loginCredential)
+        {
+            return Cookie(loginCredential);
         }
 
-        public LoginResponse RegisterUsers(URegisterData loginData)
+        public UMinData GetUserByCookie(string apiCookieValue)
         {
-            return RegisterNewUsers(loginData);
+            return UserCookie(apiCookieValue);
         }
-
-        public LoginResponse GenerateUserSessionActionFlow(ULoginData loginData)
-        {
-            return GenerateUserSession(loginData);
-        }
-        public HttpCookie CookieGenerate(string Uname)
-        {
-            return UserGenerateCookie(Uname);
-        }
-
-        public UMinData GetUserByCookie(string cookieName)
-        {
-            return GetUserByCookieApi(cookieName);
-        }
-
-        public void CloseCurrentSession(string sessionName)
-        {
-           // CloseCurrentSession_Api(sessionName);
-        }
-
     }
 }

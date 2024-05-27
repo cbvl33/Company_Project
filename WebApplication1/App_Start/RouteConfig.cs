@@ -11,30 +11,88 @@ namespace WebApplication1
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            // Игнорирование запросов к файлам ресурсов
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            // Добавление маршрута для LoginAction в LoginController
-            routes.MapRoute(
-                name: "LoginAction",
-                url: "Login/LoginAction",
-                defaults: new { controller = "Login", action = "LoginAction" }
-            );
-
-            // Добавление маршрута для RegisterAction в LoginController
-            routes.MapRoute(
-                name: "RegisterAction",
-                url: "Login/RegisterAction",
-                defaults: new { controller = "Login", action = "RegisterAction" }
-            );
-
-            // Маршрут по умолчанию
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
             );
+            routes.MapRoute(
+                name: "Contact",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
+
+            );
+            routes.MapRoute(
+                name: "About",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+
+            );
+            routes.MapRoute(
+                name: "Services",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Services", id = UrlParameter.Optional }
+
+            );
+          //routes.MapRoute(
+          //    name: "Appointment",
+          //    url: "{controller}/{action}/{id}",
+          //    defaults: new { controller = "Home", action = "appointment", id = UrlParameter.Optional }
+          //
+          //);
+            routes.MapRoute(
+                name: "Pricing",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Pricing", id = UrlParameter.Optional }
+
+            );
+            routes.MapRoute(
+             name: "User",
+             url: "{controller}/{action}/{id}",
+             defaults: new { controller = "Home", action = "user", id = UrlParameter.Optional }
+
+             );
+
+            routes.MapRoute(
+            name: "Team",
+            url: "{controller}/{action}/{id}",
+            defaults: new { controller = "Home", action = "Team", id = UrlParameter.Optional }
+
+        );
+            routes.MapRoute(
+             name: "Testimonials",
+             url: "{controller}/{action}/{id}",
+             defaults: new { controller = "Home", action = "Testimonials", id = UrlParameter.Optional }
+
+         );
+            //     routes.MapRoute(
+            //    name: "appoitment",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "appointment", id = UrlParameter.Optional }
+            //
+            //);
+            //   routes.MapRoute(
+            //    name: "Team",
+            //    url: "{controller}/{action}/{id}",
+            //    defaults: new { controller = "Home", action = "Team", id = UrlParameter.Optional }
+            //
+            //);
+            routes.MapRoute(
+                name: "SignIn",
+                url: "Home/SignIn", // Уникальный путь для входа
+                defaults: new { controller = "Login", action = "SignIn" }
+                );
+
+            routes.MapRoute(
+                name: "SignUp",
+                url: "Home/SignUp", // Уникальный путь для регистрации
+                defaults: new { controller = "Login", action = "SignUp" }
+            );
+
+
         }
     }
 }
-

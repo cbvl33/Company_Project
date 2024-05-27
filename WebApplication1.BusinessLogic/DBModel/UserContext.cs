@@ -10,7 +10,7 @@ namespace WebApplication1.BusinessLogic.DBModel
 {
     public class UserContext : DbContext
     {
-        public UserContext() : base(nameOrConnectionString:"name=WebApplication1"){ }
-        public virtual DbSet<UserDTO> Users { get; set; }
+        public UserContext() : base("name=WebApplication1"){ }
+        public virtual DbSet<UserDTOes> Users { get; set; }
     }
 }

@@ -6,157 +6,147 @@ using WebApplication1.Domain.Entities.User;
 using WebApplication1.Domain.Entities.Respond;
 using WebApplication1.Helpers;
 using System.Net.Http;
+using AutoMapper;
 using WebApplication1.BusinessLogic.DBModel;
 using WebApplication1.Domain.Entities.Product.PDbTable;
 using WebApplication1.Domain.Entities.UDbTable;
 using WebApplication1.Domain.Enums;
 using WebApplication1.Domain.Entities.User.Models;
+using System.ComponentModel.DataAnnotations;
+using static System.Collections.Specialized.BitVector32;
 
 namespace WebApplication1.BusinessLogic.MainAPI
 {
     public class UserAPI
     {
-        internal LoginResponse LoginCheck(ULoginData uld)
+        internal LoginResponse UserLoginAction(ULoginData data)
         {
-            UserDTO local;
-            var hashpass = PasswordManager.Md5Crypt(uld.Password);
-
-            using (var db = new UserContext())
+            UserDTOes result;
+            var validate = new EmailAddressAttribute();
+            if (validate.IsValid(data.Email))
             {
-                local = db.Users.FirstOrDefault(x => x.Email == uld.Email && x.Password == hashpass);
-            }
+                // var pass = LoginHelper.HashGen(data.Password);
+                using (var db = new UserContext())
+                {
+                    result = db.Users.FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
+                }
 
-            if (local != null)
-            {
+                if (result == null)
+                {
+                    return new LoginResponse { Status = false, StatusMessage = "The Username or Password is Incorrect" };
+                }
+
+                using (var todo = new UserContext())
+                {
+                    result.UserIp = data.UserIP;
+                    result.LastLogin = data.LastLogin;
+                    todo.Entry(result).State = EntityState.Modified;
+                    todo.SaveChanges();
+                }
+
                 return new LoginResponse { Status = true };
             }
-            return new LoginResponse { Status = false, StatusMessage = "NO USER WITH THIS EMAIL" };
-        }
-
-        internal LoginResponse GenerateUserSession(ULoginData uld)
-        {
-            UserDTO local;
-            var password = PasswordManager.Md5Crypt(uld.Password);
-
-            using (var db = new UserContext())
+            else
             {
-                local = db.Users.FirstOrDefault(x => x.Email == uld.Email && x.Password == password);
-            }
-
-            if (local == null)
-            {
-                return new LoginResponse { Status = false, StatusMessage = "WRONG USERNAME OR PASSWORD" };
-            }
-
-            return new LoginResponse { Status = true };
-        }
-
-        internal LoginResponse RegisterNewUsers(URegisterData data)
-        {
-            UserDTO local;
-
-            using (var db = new UserContext())
-            {
-                local = db.Users.FirstOrDefault(x => x.Email == data.Email);
-            }
-
-            if (local != null)
-            {
-                return new LoginResponse
+                // var pass = HashGen(data.Password);
+                using (var db = new UserContext())
                 {
-                    Status = false,
-                    StatusMessage = "This username is already registered"
-                };
+                    result = db.Users.FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
+                }
+
+                if (result == null)
+                {
+                    return new LoginResponse { Status = false, StatusMessage = "The Username or Password is Incorrect" };
+                }
+
+                using (var todo = new UserContext())
+                {
+                    result.UserIp = data.UserIP;
+                    result.LastLogin = data.LastLogin;
+                    todo.Entry(result).State = EntityState.Modified;
+                    todo.SaveChanges();
+                }
+
+                return new LoginResponse { Status = true };
             }
-
-            var user = new UserDTO
-            {
-                Password = PasswordManager.Md5Crypt(data.Password),
-                Email = data.Email,
-                UserName = data.Name,
-                LastLogin = data.LastLogin,
-                UserIp = data.UserIP,
-                Created = DateTime.Now,
-                Levels = Levels.User,
-            };
-
-            using (var db = new UserContext())
-            {
-                db.Users.Add(user);
-                db.SaveChanges();
-            }
-
-            return new LoginResponse { Status = true };
         }
 
-        public HttpCookie UserGenerateCookie(string Username)
+        internal HttpCookie Cookie(string loginCredential)
         {
-            var cookies = new HttpCookie("WebApplication1")
+            var apiCookie = new HttpCookie("X-KEY")
             {
-                Value = CookieGeneration.Create(Username)
+                Value = CookieGeneration.Create(loginCredential)
             };
 
             using (var db = new SessionContext())
             {
-                UDbSession current;
-
-                current = (from el in db.Sessions where el.UserName == Username select el).FirstOrDefault();
-
-                if (current != null)
+                UDbSession curent;
+                var validate = new EmailAddressAttribute();
+                if (validate.IsValid(loginCredential))
                 {
-                    current.CookieString = cookies.Value;
-                    current.Lifetime = DateTime.Now.AddHours(2);
-                    using (var db_context = new SessionContext())
+                    curent = (from e in db.Sessions where e.UserName == loginCredential select e).FirstOrDefault();
+                }
+                else
+                {
+                    curent = (from e in db.Sessions where e.UserName == loginCredential select e).FirstOrDefault();
+                }
+
+                if (curent != null)
+                {
+                    curent.CookieString = apiCookie.Value;
+                    curent.Lifetime = DateTime.Now.AddMinutes(60);
+                    using (var todo = new SessionContext())
                     {
-                        db_context.Entry(current).State = EntityState.Modified;
-                        db_context.SaveChanges();
+                        todo.Entry(curent).State = EntityState.Modified;
+                        todo.SaveChanges();
                     }
                 }
                 else
                 {
                     db.Sessions.Add(new UDbSession
                     {
-                        UserName = Username,
-                        CookieString = cookies.Value,
-                        Lifetime = DateTime.Now.AddHours(2)
+                        UserName = loginCredential,
+                        CookieString = apiCookie.Value,
+                        Lifetime = DateTime.Now.AddMinutes(60)
                     });
                     db.SaveChanges();
-
                 }
-                return cookies;
             }
+
+            return apiCookie;
         }
-        public UMinData GetUserByCookieApi(string cookie)
+
+        internal UMinData UserCookie(string cookie)
         {
             UDbSession session;
+            UserDTOes curentUser;
+
             using (var db = new SessionContext())
             {
-                session = db.Sessions.FirstOrDefault(el => el.CookieString == cookie);
+                session = db.Sessions.FirstOrDefault(s => s.CookieString == cookie && s.Lifetime > DateTime.Now);
+            }
 
-                if (session != null)
+            if (session == null) return null;
+            using (var db = new UserContext())
+            {
+                var validate = new EmailAddressAttribute();
+                if (validate.IsValid(session.UserName))
                 {
-                    if (session.Lifetime < DateTime.Now)
-                    {
-                        db.Sessions.Remove(session);
-                        db.SaveChanges();
-                        return null;
-                    }
-
-                    UserDTO user;
-                    using (var db_user = new UserContext())
-                    {
-                        user = db_user.Users.FirstOrDefault(u => u.UserName == session.UserName);
-                    }
-                    UMinData uMinData = new UMinData()
-                    {
-                        Username = user.UserName,
-                        Email = user.Email,
-                        Level = user.Levels
-                    };
-                    return uMinData;
+                    curentUser = db.Users.FirstOrDefault(u => u.Email == session.UserName);
+                }
+                else
+                {
+                    curentUser = db.Users.FirstOrDefault(u => u.Email == session.UserName);
                 }
             }
-            return null;
+
+
+
+            if (curentUser == null) return null;
+            Mapper.Initialize(cfg => cfg.CreateMap<UserDTOes, UMinData>());
+            var userminimal = Mapper.Map<UMinData>(curentUser);
+
+            return userminimal;
         }
     }
 }
