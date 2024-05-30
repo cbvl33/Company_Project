@@ -13,22 +13,7 @@ using WebApplication1.BusinessLogic.MainAPI;
 namespace WebApplication1.BusinessLogic.MainBL
 {
     public class LoginBL : UserAPI, ILogin
-    {//убираем
-     //public LoginResponse Login(ULoginData loginData)
-     //{
-     //    return LoginCheck(loginData);
-     //}
-     // убираем
-     //public LoginResponse RegisterUsers(URegisterData loginData)
-     //{
-     //    return RegisterNewUsers(loginData);
-     //}
-     // убираем под вопросом 
-     //public LoginResponse GenerateUserSessionActionFlow(ULoginData uData)
-     //{
-     //    return GenerateUserSession(uData);
-     //}
-        /// 
+    {
         public LoginResponse UserLogin(ULoginData data)
         {
             return UserLoginAction(data);

@@ -78,7 +78,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(UserRegistration model)
-        {
+         {
             if (ModelState.IsValid)
             {
                 using (UserContext db = new UserContext())
@@ -88,7 +88,7 @@ namespace WebApplication1.Controllers
                         ModelState.AddModelError("Email", "Email уже занят");
                         return View(model);
                     }
-                    //
+                   
 
                     var user = new UserDTOes
                     {
@@ -107,9 +107,9 @@ namespace WebApplication1.Controllers
                         var thisSession = sessionDb.Sessions.FirstOrDefault(s => s.UserName == model.UserName);
                         if(thisSession != null)
                         {
-                            // bimbimbambam ya ne yebu prosto pishu
+                           
                         }
-                        //не верю =)
+                       
                         var session = new UDbSession()
                         {
                             CookieString = " dmvjnjvnjsnv",

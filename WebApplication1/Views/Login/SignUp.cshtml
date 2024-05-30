@@ -1,17 +1,17 @@
 ﻿@using System.Web.Optimization
 @model WebApplication1.Models.User.UserRegistration
 
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_LSign.cshtml";
+}
+
 <!-- Contact Start -->
 <div class="container-fluid py-5">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
-
-            </div>
+    <div class="container d-flex justify-content-center">
+        <div class="row g-5 justify-content-center">
             <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-
                 <div class="row g-3">
-
                     @using (Html.BeginForm("SignUp", "Login", FormMethod.Post, new { @id = "LoginForm" }))
                     {
                         @Html.AntiForgeryToken()
@@ -37,13 +37,10 @@
                             <br />
                             @Html.ValidationMessageFor(x => x.Password)
                         </div>
-                        <button class="btn btn-primary w-100 py-3" type="submit">Регистрация</button>
+                        <button class="btn w-100 py-3" type="submit" style="background-color: #3CB371; color: white;">Регистрация</button>
                     }
                 </div>
             </div>
-        </div>
-        <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
-
         </div>
     </div>
 </div>

@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "~/Views/Shared/_LUser.cshtml";
+}
+
+@model WebApplication1.Models.UserData
+@using WebApplication1.Extension
+
+<!-- Information Start-->
+<div>
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="section-title mb-4">
+                        <h2 class="position-relative d-inline-block text-primary text-uppercase">Информация</h2>
+                        <h6 class="display-6 mb-0"><small><small><small><small>Имя: @Model.UserName</small></small></small></small></h6>
+                        <h6 class="display-6 mb-0"><small><small><small><small>Email: @Model.Email</small></small></small></small></h6>
+                        <div class="col-12">
+                            <a href="@Url.Action("ChangeEmail", "AcceptReject")" class="btn btn-primary w-100 py-3">Изменить почту</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="section-title mb-4">
+                        <h2 class="position-relative d-inline-block text-primary text-uppercase">Оставить отзыв</h2>
+                        @using (Html.BeginForm("Comment", "User", FormMethod.Post))
+                        {
+                            using (var db = new WebApplication1.BusinessLogic.DBModel.CommentContext())
+                            {
+                                if (db.Comment.Any(c => c.Email == Model.Email && c.Status == WebApplication1.Domain.Enums.ARole.REJECTED) && !db.Comment.Any(c => c.Email == Model.Email && c.Status != WebApplication1.Domain.Enums.ARole.REJECTED))
+                                {
+                                    <h6 style="color:red;">Ваш коментарий был отклонен</h6>
+                                    <input type="text" name="text" class="form-control border-0 bg-light px-4" placeholder="Комментарий" style="height: 55px;" />
+                                    <input type="submit" class="btn" value="Отправить" title="Отправить" />
+                                }
+                                if (db.Comment.Any(c => c.Email == Model.Email && c.Status == WebApplication1.Domain.Enums.ARole.ACCEPTED))
+                                {
+                                    <h6 style="color:green;">Ваш коментарий был принят</h6>
+                                }
+                                if (db.Comment.Any(c => c.Email == Model.Email && c.Status == WebApplication1.Domain.Enums.ARole.NOTSELECTED))
+                                {
+                                    <h6 style="color:darkcyan;">Ваш коментарий обрабатывается</h6>
+                                }
+                                if (!db.Comment.Any(c => c.Email == Model.Email))
+                                {
+                                    <input type="text" name="text" class="form-control border-0 bg-light px-4" placeholder="Комментарий" style="height: 55px;" />
+                                    <input type="submit" class="btn" value="Отправить" title="Отправить" />
+                                }
+
+
+
+
+                            }
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="container wow fadeInUp" data-wow-delay="0.1s">
+    <h2 class="text-primary text-uppercase">Ближайшие записи</h2>
+    @using (var db = new WebApplication1.BusinessLogic.DBModel.AppointmentContext())
+    {
+        var appointments = db.Users.Where(p => p.Email == Model.Email).ToList();
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Эксперт</th>
+                    <th>Номер</th>
+                    <th>Примечания</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var appointment in appointments)
+                {
+                    <tr>
+                        <td>@appointment.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@appointment.Time.ToString("hh\\:mm")</td>
+                        <td>@appointment.Expert.GetEnumDescription()</td>
+                        <td>@appointment.Number.GetEnumDescription()</td>
+                        <td>@appointment.Notes</td>
+                        @if (@appointment.Status == WebApplication1.Domain.Enums.ARole.NOTSELECTED)
+                        {
+                            <td style="color:cadetblue;">Не рассмотренно</td>
+                        }
+                        @if (@appointment.Status == WebApplication1.Domain.Enums.ARole.ACCEPTED)
+                        {
+                            <td style="color:green;">Принято</td>
+                        }
+                        @if (@appointment.Status == WebApplication1.Domain.Enums.ARole.REJECTED)
+                        {
+                            <td style="color:red;">Отклонено</td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
+</div>

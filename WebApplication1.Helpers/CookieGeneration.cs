@@ -11,7 +11,7 @@ namespace WebApplication1.Helpers
     public class CookieGeneration
     {
         private const string SaltData = "rrttdFFF88u";
-        private static readonly byte[] SaltBytes = Encoding.ASCII.GetBytes(SaltData);
+        private static readonly byte[] SaltBytes = GenerateKeyFromPassword(SaltData, 32);
 
         public static string Create(string key)
         {
@@ -79,6 +79,16 @@ namespace WebApplication1.Helpers
                 byte[] randomBytes = new byte[length];
                 rng.GetBytes(randomBytes);
                 return randomBytes;
+            }
+        }
+
+        // Метод для генерации ключа правильного размера из строки
+        private static byte[] GenerateKeyFromPassword(string password, int keyBytes)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] key = sha256.ComputeHash(Encoding.ASCII.GetBytes(password));
+                return key.Take(keyBytes).ToArray();
             }
         }
     }

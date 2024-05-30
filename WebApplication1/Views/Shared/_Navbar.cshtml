@@ -1,0 +1,58 @@
+﻿@using System.Web.Optimization
+@model WebApplication1.Domain.Entities.User.Models.UMinData
+@{
+    ViewBag.Title = "_Navbar";
+}
+
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a href="@Url.Action("Index", "Home")" class="navbar-brand p-0">
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-eye me-2"></i>Company</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+
+                @Html.ActionLink("На главную", "Index", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+
+
+                <a href=@Url.Action("Services", "Home") class="nav-item nav-link">Услуги</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Страницы</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="@Url.Action("Pricing", "Home")" class="dropdown-item">Тарифы</a>
+                        <a href="@Url.Action("Team", "Home")" class="dropdown-item">Наши спрециалисты</a>
+                        <a href="@Url.Action("Testimonials", "Home")" class="dropdown-item">Отзывы</a>
+                    </div>
+                </div>
+                <a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Контакты</a>
+            </div>
+            @if (Model.Level == WebApplication1.Domain.Enums.Levels.None)
+            {
+                <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+                <a href="@Url.Action("SignIn", "Login")" class="btn btn-primary py-2 px-4 ms-3">Вход</a>
+            }
+            @if (Model.Level != WebApplication1.Domain.Enums.Levels.None)
+            {
+                if (Model.Level == WebApplication1.Domain.Enums.Levels.User)
+                {
+                    <a href="@Url.Action("user", "User")" class="btn btn-primary py-2 px-4 ms-3">Личный кабинет</a>
+                    <a href="@Url.Action("appointment", "User")" class="btn btn-primary py-2 px-4 ms-3">Запись</a>
+                }
+                if (Model.Level == WebApplication1.Domain.Enums.Levels.Admin)
+                {
+                    <a href="@Url.Action("Expert", "User")" class="btn btn-primary py-2 px-4 ms-3">Личный кабинет</a>
+                }
+                using (Html.BeginForm("SignOut", "Login", FormMethod.Post))
+                {
+                    <input type="submit" class="btn btn-primary py-2 px-4 ms-3" value="Выход" title="Выход" />
+                }
+            }
+
+        </div>
+
+</nav>

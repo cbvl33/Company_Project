@@ -48,9 +48,8 @@
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Bin\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -413,9 +412,20 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Views\_LayoutPage2.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Login\SignUp.cshtml" />
+    <Content Include="Views\User\user.cshtml" />
+    <Content Include="Views\Shared\_LUser.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Navbar.cshtml" />
+    <Content Include="Views\Shared\_LSign.cshtml" />
+    <Content Include="Views\Shared\_NavbarLoginU.cshtml" />
+    <Content Include="Views\Shared\_NavbarSign.cshtml" />
+    <Content Include="Views\Shared\_LPages.cshtml" />
+    <Content Include="Views\Shared\_Spinner.cshtml" />
+    <Content Include="Views\Shared\_Js.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -428,7 +438,6 @@
     <Folder Include="Attribute\" />
     <Folder Include="Views\AcceptReject\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApplication1.BusinessLogic\WebApplication1.BusinessLogic.csproj">
