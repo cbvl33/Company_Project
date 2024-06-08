@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApplication1.Domain.Enums;
 
-namespace WebApplication1.Domain.Entities.User.UDbTable
+namespace WebApplication1.Domain.Entities.User
 {
     public class ADbTable
     {
@@ -22,25 +22,17 @@ namespace WebApplication1.Domain.Entities.User.UDbTable
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
+        [Display(Name = "Expert")]
+        public Experts Expert { get; set; }
 
         [Required]
-        [Display(Name = "Subject")]
-        [StringLength(70)]
-        public string Subject { get; set; }
-
-        //[Required]
-        //[Display(Name = "Service")]
-        //public Services Service { get; set; }
-
+        [Display(Name = "Expert Email Address")]
+        [StringLength(30)]
+        public string DEmail { get; set; }
 
         [Required]
-        [Display(Name = "Notes")]
-        [StringLength(10000)]
-        public string Notes { get; set; }
-
-        public ARole Status { get; set; }
+        [Display(Name = "Service")]
+        public Services Service { get; set; }
 
         [Required]
         [Display(Name = "Date")]
@@ -52,15 +44,15 @@ namespace WebApplication1.Domain.Entities.User.UDbTable
         public TimeSpan Time { get; set; }
 
         [Required]
-        [Display(Name = "Expert")]
-        public Experts Expert { get; set; }
-
-        [Required]
-        [Display(Name = "Service")]
-        public Services Service { get; set; }
-
-        [Required]
         [Display(Name = "Number")]
         public Numbers Number { get; set; }
+
+
+        [Display(Name = "Notes")]
+        [StringLength(100)]
+        public string Notes { get; set; }
+
+
+        public ARole Status { get; set; }
     }
 }

@@ -1,0 +1,55 @@
+@{
+    Layout = "~/Views/Shared/_LPages.cshtml";
+}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Отзывы</h1>
+                <a href="" class="h4 text-white">Домой</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="" class="h4 text-white">Отзывы</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    <!-- Testimonial Start -->
+            <div class="container-fluid bg-primary bg-testimonial py-5 mb-5 wow fadeInUp" data-wow-delay="0.1s" style="margin-top: 90px;">
+                <div class="container py-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="owl-carousel testimonial-carousel rounded p-5 wow zoomIn" data-wow-delay="0.6s">
+@using (var dbu = new WebApplication1.BusinessLogic.DBModel.UserContext())
+{
+    using (var dbc = new WebApplication1.BusinessLogic.DBModel.CommentContext())
+    {
+        var comments = dbc.Comment;
+        foreach (var comment in comments)
+        {
+            if (comment.Status == WebApplication1.Domain.Enums.ARole.ACCEPTED)
+            {
+
+
+                var users = dbu.Users.Where(p => p.Email == comment.Email);
+                foreach (var user in users)
+                {
+
+
+                                <div class="testimonial-item text-center text-white">
+                                    <p class="fs-5">@comment.Text</p>
+                                    <hr class="mx-auto w-25">
+                                    <h4 class="text-white mb-0">@user.UserName @user.LastName</h4>
+                                </div>
+                                
+                }
+            }
+        }
+    }
+}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!-- Testimonial End -->

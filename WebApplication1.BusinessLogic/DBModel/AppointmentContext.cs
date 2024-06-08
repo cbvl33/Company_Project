@@ -4,8 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApplication1.Domain.Entities.Product.PDbTable;
-using WebApplication1.Domain.Entities.User.UDbTable;
+using WebApplication1.Domain.Entities.User;
 
 namespace WebApplication1.BusinessLogic.DBModel
 {

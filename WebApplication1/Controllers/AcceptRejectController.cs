@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Domain.Enums;
 using WebApplication1.Models;
+using WebApplication1.Domain.Entities.User.UDbTable;
 
 namespace WebApplication1.Controllers
 {
@@ -23,7 +24,7 @@ namespace WebApplication1.Controllers
                 app.Status = ARole.ACCEPTED;
                 db.SaveChanges();
             }
-            return RedirectToAction("Admin", "User");
+            return RedirectToAction("Expert", "User");
         }
         [HttpPost]
         public ActionResult Reject()
@@ -36,7 +37,7 @@ namespace WebApplication1.Controllers
                 app.Status = ARole.REJECTED;
                 db.SaveChanges();
             }
-            return RedirectToAction("Admin", "User");
+            return RedirectToAction("Expert", "User");
         }
         [HttpPost]
         public ActionResult AcceptComment()
@@ -49,7 +50,7 @@ namespace WebApplication1.Controllers
                 app.Status = ARole.ACCEPTED;
                 db.SaveChanges();
             }
-            return RedirectToAction("Admin", "User");
+            return RedirectToAction("Expert", "User");
         }
         [HttpPost]
         public ActionResult RejectComment()
@@ -62,7 +63,7 @@ namespace WebApplication1.Controllers
                 app.Status = ARole.REJECTED;
                 db.SaveChanges();
             }
-            return RedirectToAction("Admin", "User");
+            return RedirectToAction("Expert", "User");
         }
         public ActionResult ChangeEmail()
         {

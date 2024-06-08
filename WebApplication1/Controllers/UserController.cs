@@ -54,6 +54,8 @@ namespace WebApplication1.Controllers
             UserData u = new UserData();
             u.UserName = profile.UserName;
             u.Email = profile.Email;
+            u.LastName = profile.LastName;
+            u.PhoneNumber = profile.Number;
 
 
             return View(u);
@@ -61,7 +63,7 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
 
-        public ActionResult Admin()
+        public ActionResult Expert()
         {
             var apiCookie = Request.Cookies["X-KEY"];
             var profile = _session.GetUserByCookie(apiCookie.Value);
@@ -83,13 +85,15 @@ namespace WebApplication1.Controllers
                     }
                 }
             }
-            if (profile.Level != Domain.Enums.Levels.Admin)
+            if (profile.Level != Domain.Enums.Levels.Expert)
             {
                 return RedirectToAction("Index", "Home");
             }
             UserData u = new UserData();
             u.UserName = profile.UserName;
             u.Email = profile.Email;
+            u.LastName = profile.LastName;
+            u.PhoneNumber = profile.Number;
 
 
             return View(u);
@@ -146,15 +150,19 @@ namespace WebApplication1.Controllers
                     switch (model.Expert)
                     {
                         case Domain.Enums.Experts.AmandaJepson:
+                            user.DEmail = "amandajepson@gmail.com";
                             user.Number = Domain.Enums.Numbers.Number1;
                             break;
                         case Domain.Enums.Experts.WilliamAnderson:
+                            user.DEmail = "williamanderson@gmail.com";
                             user.Number = Domain.Enums.Numbers.Number2;
                             break;
                         case Domain.Enums.Experts.WalterWhite:
+                            user.DEmail = "walterwhite@gmail.com";
                             user.Number = Domain.Enums.Numbers.Number3;
                             break;
                         case Domain.Enums.Experts.SarahJhonson:
+                            user.DEmail = "sarahjhonson@gmail.com";
                             user.Number = Domain.Enums.Numbers.Number4;
                             break;
                     }

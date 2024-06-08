@@ -8,13 +8,12 @@ using WebApplication1.Helpers;
 using System.Net.Http;
 using AutoMapper;
 using WebApplication1.BusinessLogic.DBModel;
-using WebApplication1.Domain.Entities.Product.PDbTable;
 using WebApplication1.Domain.Entities.UDbTable;
 using WebApplication1.Domain.Enums;
 using WebApplication1.Domain.Entities.User.Models;
 using System.ComponentModel.DataAnnotations;
 using static System.Collections.Specialized.BitVector32;
-
+using WebApplication1.Domain.Entities.User.UDbTable;
 namespace WebApplication1.BusinessLogic.MainAPI
 {
     public class UserAPI
@@ -25,7 +24,7 @@ namespace WebApplication1.BusinessLogic.MainAPI
             var validate = new EmailAddressAttribute();
             if (validate.IsValid(data.Email))
             {
-                // var pass = LoginHelper.HashGen(data.Password);
+                
                 using (var db = new UserContext())
                 {
                     result = db.Users.FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
@@ -38,8 +37,8 @@ namespace WebApplication1.BusinessLogic.MainAPI
 
                 using (var todo = new UserContext())
                 {
-                    result.UserIp = data.UserIP;
-                    result.LastLogin = data.LastLogin;
+                    result.LasIp = data.LoginIp;
+                    result.LastLogin = data.LoginDateTime;
                     todo.Entry(result).State = EntityState.Modified;
                     todo.SaveChanges();
                 }
@@ -48,7 +47,6 @@ namespace WebApplication1.BusinessLogic.MainAPI
             }
             else
             {
-                // var pass = HashGen(data.Password);
                 using (var db = new UserContext())
                 {
                     result = db.Users.FirstOrDefault(u => u.Email == data.Email && u.Password == data.Password);
@@ -61,8 +59,8 @@ namespace WebApplication1.BusinessLogic.MainAPI
 
                 using (var todo = new UserContext())
                 {
-                    result.UserIp = data.UserIP;
-                    result.LastLogin = data.LastLogin;
+                    result.LasIp = data.LoginIp;
+                    result.LastLogin = data.LoginDateTime;
                     todo.Entry(result).State = EntityState.Modified;
                     todo.SaveChanges();
                 }

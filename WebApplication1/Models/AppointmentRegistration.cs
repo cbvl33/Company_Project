@@ -13,28 +13,15 @@ namespace WebApplication1.Models
         [Required]
         public Experts Expert { get; set; }
         [Required]
-        public string Notes { get; set; }
-
-        [Required]
-        public string Subject { get; set; }
-
-        [Required]
-        public string Name { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-
+        public Services Service { get; set; }
         [Required]
         public DateTime Date { get; set; }
-
         [Required]
         public TimeSpan Time { get; set; }
-
-        [Required]
-        public Services Service { get; set; }
-
         [Required]
         public Numbers Number { get; set; }
-}
+        [Required]
+        public string Notes { get; set; }
 
+    }
 }

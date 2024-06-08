@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "_Navbar";
+}
+<nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+    <a href="@Url.Action("Index", "Home")" class="navbar-brand p-0">
+        <a href="@Url.Action("Index", "Home")" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-eye me-2"></i>EyesCare</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                @Html.ActionLink("На главную", "Index", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+                @Html.ActionLink("О нас", "about", "Home", new { area = "" }, new { @class = "nav-item nav-link" })
+
+
+                <a href=@Url.Action("service", "Home") class="nav-item nav-link">Услуги</a>
+
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Страницы</a>
+                    <div class="dropdown-menu m-0">
+                        <a href="@Url.Action("price", "Home")" class="dropdown-item">Тарифы</a>
+                        <a href="@Url.Action("team", "Home")" class="dropdown-item">Наши спрециалисты</a>
+                        <a href="@Url.Action("testimonial", "Home")" class="dropdown-item">Отзывы</a>
+
+                    </div>
+                </div>
+                <a href="@Url.Action("Contact", "Home")" class="nav-item nav-link">Контакты</a>
+            </div>
+            <button type="button" class="btn text-dark" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button>
+            <a href="@Url.Action("doctor", "User")" class="btn btn-primary py-2 px-4 ms-3">Личный кабинет</a>
+            @using (Html.BeginForm("SignOut", "Login", FormMethod.Post))
+            {
+            <input type="submit" class="btn btn-primary py-2 px-4 ms-3" value="Выход" title="Выход" />
+            }
+
+        </div>
+
+</nav>

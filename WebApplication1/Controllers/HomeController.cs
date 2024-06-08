@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
             empty.Level = Domain.Enums.Levels.None;
             return View(empty);
         }
-        public ActionResult About()
+        public ActionResult about()
         {
             SessionStatus();
             var apiCookie = Request.Cookies["X-KEY"];
@@ -55,21 +55,7 @@ namespace WebApplication1.Controllers
             empty.Level = Domain.Enums.Levels.None;
             return View(empty);
         }
-        public ActionResult Pricing()
-        {
-            SessionStatus();
-            var apiCookie = Request.Cookies["X-KEY"];
-            if (apiCookie != null)
-            {
-                var profile = _session.GetUserByCookie(apiCookie.Value);
-                return View(profile);
-            }
-            var empty = new UMinData();
-            empty.Level = Domain.Enums.Levels.None;
-            return View(empty);
-        }
-
-        public ActionResult Testimonials()
+        public ActionResult Price()
         {
             SessionStatus();
             var apiCookie = Request.Cookies["X-KEY"];
@@ -83,21 +69,7 @@ namespace WebApplication1.Controllers
             return View(empty);
         }
 
-        public ActionResult Services()
-        {
-            SessionStatus();
-            var apiCookie = Request.Cookies["X-KEY"];
-            if (apiCookie != null)
-            {
-                var profile = _session.GetUserByCookie(apiCookie.Value);
-                return View(profile);
-            }
-            var empty = new UMinData();
-            empty.Level = Domain.Enums.Levels.None;
-            return View(empty); 
-        }
-
-        public ActionResult Portfolio ()
+        public ActionResult testimonial()
         {
             SessionStatus();
             var apiCookie = Request.Cookies["X-KEY"];
@@ -111,7 +83,7 @@ namespace WebApplication1.Controllers
             return View(empty);
         }
 
-        public ActionResult Blog ()
+        public ActionResult service()
         {
             SessionStatus();
             var apiCookie = Request.Cookies["X-KEY"];
@@ -125,21 +97,7 @@ namespace WebApplication1.Controllers
             return View(empty);
         }
 
-        public ActionResult Blog_Single()
-        {
-            SessionStatus();
-            var apiCookie = Request.Cookies["X-KEY"];
-            if (apiCookie != null)
-            {
-                var profile = _session.GetUserByCookie(apiCookie.Value);
-                return View(profile);
-            }
-            var empty = new UMinData();
-            empty.Level = Domain.Enums.Levels.None;
-            return View(empty);
-        }
-
-        public ActionResult Team()
+        public ActionResult team()
         {
             SessionStatus();
             var apiCookie = Request.Cookies["X-KEY"];

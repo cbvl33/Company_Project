@@ -74,10 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic.cs" />
-    <Compile Include="Core\ProductCore\ProductAPI.cs" />
     <Compile Include="DBModel\AppointmentContext.cs" />
     <Compile Include="DBModel\CommentContext.cs" />
-    <Compile Include="DBModel\ProductContext.cs" />
     <Compile Include="DBModel\SessionContext.cs" />
     <Compile Include="DBModel\UserContext.cs" />
     <Compile Include="Interfaces\ILogin.cs" />

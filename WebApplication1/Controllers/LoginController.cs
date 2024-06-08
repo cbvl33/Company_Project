@@ -10,19 +10,18 @@ using WebApplication1.BusinessLogic.Interfaces;
 using WebApplication1.Domain.Entities.Respond;
 using WebApplication1.Domain.Entities.User;
 using WebApplication1.Models.User;
-using WebApplication1.Domain.Entities.UDbTable;
-using WebApplication1.Domain.Entities.Product.PDbTable;
 using WebApplication1.Domain.Entities.User.UDbTable;
 using System.Data.Entity.Infrastructure;
+using WebApplication1.BusinessLogic;
 
-namespace WebApplication1.Controllers
+namespace eUseControl.Controllers
 {
     public class LoginController : Controller
     {
         private readonly ILogin _session;
         public LoginController()
         {
-            var bl = new BusinessLogic.BusinessLogic();
+            var bl = new BusinessLogic();
             _session = bl.GetLoginBL();
         }
 
@@ -31,6 +30,33 @@ namespace WebApplication1.Controllers
         {
             return View();
 
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminSignIn(UActionLogin model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Здесь добавьте логику для аутентификации администратора
+                if (model.Email == "admin@example.com" && model.Password == "adminpassword")
+                {
+                    // Аутентификация успешна
+                    // Здесь вы можете выполнить действия, специфичные для администратора
+                    return RedirectToAction("Expert", "User");
+                }
+                else
+                {
+                    // Ошибка аутентификации администратора
+                    ModelState.AddModelError("", "Неверные учетные данные эксперта.");
+                    return View();
+                }
+            }
+
+            // Неверные данные в форме
+            return View();
         }
 
         [HttpPost]
@@ -42,9 +68,9 @@ namespace WebApplication1.Controllers
                 Mapper.Initialize(cfg => cfg.CreateMap<UActionLogin, ULoginData>());
                 var data = Mapper.Map<ULoginData>(model);
 
-                data.UserIP = Request.UserHostAddress;
-                data.LastLogin = DateTime.Now;
-                // в Isession
+                data.LoginIp = Request.UserHostAddress;
+                data.LoginDateTime = DateTime.Now;
+
                 var userLogin = _session.UserLogin(data);
                 if (userLogin.Status)
                 {
@@ -53,10 +79,10 @@ namespace WebApplication1.Controllers
 
                     using (UserContext db = new UserContext())
                     {
-                        data.Level = db.Users.FirstOrDefault(u => u.Email == data.Email).Levels;
+                        data.Level = db.Users.FirstOrDefault(u => u.Email == data.Email).Level;
                     }
-                    if (data.Level == Levels.Admin)
-                        return RedirectToAction("Admin", "User");
+                    if (data.Level == WebApplication1.Domain.Enums.Levels.Expert)
+                        return RedirectToAction("Expert", "User");
                     else
                         return RedirectToAction("user", "User");
                 }
@@ -78,7 +104,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(UserRegistration model)
-         {
+        {
             if (ModelState.IsValid)
             {
                 using (UserContext db = new UserContext())
@@ -88,56 +114,31 @@ namespace WebApplication1.Controllers
                         ModelState.AddModelError("Email", "Email уже занят");
                         return View(model);
                     }
-                   
+                    if (model.Password != model.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("ConfirmPassword", "Не правильно повторили пароль ");
+                        return View(model);
+                    }
 
-                    var user = new UserDTOes
+                    var user = new UserDTOes()
                     {
                         UserName = model.UserName,
+                        LastName = model.LastName,
+                        Number = model.Number,
                         Email = model.Email,
                         Password = model.Password,
-                        Levels = Levels.User,
-                        LastLogin = DateTime.Now,
-                        Created = DateTime.Now,
+                        Level = WebApplication1.Domain.Enums.Levels.User,
+                        LastLogin = DateTime.Now
+
                     };
                     db.Users.Add(user);
                     db.SaveChanges();
-
-                    using (var sessionDb = new SessionContext())
-                    {
-                        var thisSession = sessionDb.Sessions.FirstOrDefault(s => s.UserName == model.UserName);
-                        if(thisSession != null)
-                        {
-                           
-                        }
-                       
-                        var session = new UDbSession()
-                        {
-                            CookieString = " dmvjnjvnjsnv",
-                            UserName = model.UserName,
-                            Lifetime = DateTime.Now,
-
-                        };
-                        sessionDb.Sessions.Add(session);
-                        sessionDb.SaveChanges();
-                    }
-                    using (var cdb = new CommentContext())
-                    {
-                        var thisCom = new CDbTable()
-                        {
-                            Email = model.Email,
-                            Text = "kmvfdvmjfndvjndfjvjdnvjndjvndjvnd",
-                            Status = ARole.REJECTED
-                        };
-                        cdb.Comment.Add(thisCom);
-                        cdb.SaveChanges();
-                    }
 
                     return RedirectToAction("Index", "Home");
                 }
             }
             return View(model);
         }
-
         [HttpPost]
         public ActionResult SignOut()
         {

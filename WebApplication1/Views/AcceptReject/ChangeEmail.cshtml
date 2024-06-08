@@ -1,0 +1,64 @@
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.Web.Optimization
+@model WebApplication1.Models.UserChangeEmail
+
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_LSign.cshtml";
+}
+<!-- Hero Start -->
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Изменение почты</h1>
+            <a href="" class="h4 text-white">На главную</a>
+
+
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
+
+            </div>
+
+            @using (Html.BeginForm("ChangeEmail", "AcceptReject", FormMethod.Post, new { @id = "LoginForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="row g-3">
+                        <form>
+                            <div class="col-12">
+                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Почта", @style = "height: 55px;", @type = "email" })
+
+                                @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12">
+                                @Html.TextBoxFor(x => x.NewEmail, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Новая Почта", @style = "height: 55px;", @type = "email" })
+
+                                @Html.ValidationMessageFor(x => x.NewEmail, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12">
+                                @Html.PasswordFor(x => x.Password, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Пароль", @style = "height: 55px;", @type = "password" })
+                                @Html.ValidationMessageFor(x => x.Password)
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100 py-3">Изменить</button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>

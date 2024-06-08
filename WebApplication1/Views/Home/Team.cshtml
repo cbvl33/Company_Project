@@ -1,111 +1,113 @@
-﻿
 @{
-    ViewBag.Title = "Team";
-    Layout = "~/Views/_LPages.cshtml";
+    Layout = "~/Views/Shared/_LPages.cshtml";
 }
-
-<main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>Team</h2>
-                <ol>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Team</li>
-                </ol>
-            </div>
-
+<!-- Hero Start -->
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn">Врачи</h1>
+            <a href="" class="h4 text-white">Домой</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="" class="h4 text-white">Врачи</a>
         </div>
-    </section><!-- End Breadcrumbs -->
-    <!-- ======= Our Team Section ======= -->
-    <section id="team" class="team section-bg">
-        <div class="container">
-
-            <div class="section-title" data-aos="fade-up">
-                <h2>Our <strong>Team</strong></h2>
-                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+    </div>
+</div>
+<!-- Hero End -->
+<!-- Team Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
+                <div class="section-title bg-light rounded h-100 p-5">
+                    <h5 class="position-relative d-inline-block text-primary text-uppercase">Наши врачи</h5>
+                    <h1 class="display-6 mb-4">Встречайте наших опытных врачей</h1>
+                </div>
             </div>
-
-            <div class="row">
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up">
-                        <div class="member-img">
-                            <img src="~/assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Walter White</h4>
-                            <span>Chief Executive Officer</span>
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="position-relative rounded-top" style="z-index: 1;">
+                        <img class="img-fluid rounded-top w-100" src="~/img/team-1.jpg" alt="">
+                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-img">
-                            <img src="~/assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Sarah Jhonson</h4>
-                            <span>Product Manager</span>
-                        </div>
+                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                        <h4 class="mb-2">Dr. John Doe</h4>
+                        <p class="text-primary mb-0">Хирург</p>
                     </div>
                 </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-img">
-                            <img src="~/assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>William Anderson</h4>
-                            <span>CTO</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-                    <div class="member" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member-img">
-                            <img src="~/assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                            <div class="social">
-                                <a href=""><i class="bi bi-twitter"></i></a>
-                                <a href=""><i class="bi bi-facebook"></i></a>
-                                <a href=""><i class="bi bi-instagram"></i></a>
-                                <a href=""><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="member-info">
-                            <h4>Amanda Jepson</h4>
-                            <span>Accountant</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                <div class="team-item">
+                    <div class="position-relative rounded-top" style="z-index: 1;">
+                        <img class="img-fluid rounded-top w-100" src="~/img/team-2.jpg" alt="">
+                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                        <h4 class="mb-2">Dr. John Doe</h4>
+                        <p class="text-primary mb-0">Главный врач</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="position-relative rounded-top" style="z-index: 1;">
+                        <img class="img-fluid rounded-top w-100" src="~/img/team-3.jpg" alt="">
+                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                        <h4 class="mb-2">Dr. John Doe</h4>
+                        <p class="text-primary mb-0">Хирург</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="position-relative rounded-top" style="z-index: 1;">
+                        <img class="img-fluid rounded-top w-100" src="~/img/team-4.jpg" alt="">
+                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                        <h4 class="mb-2">Dr. John Doe</h4>
+                        <p class="text-primary mb-0">Медсестра</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 wow slideInUp" data-wow-delay="0.6s">
+                <div class="team-item">
+                    <div class="position-relative rounded-top" style="z-index: 1;">
+                        <img class="img-fluid rounded-top w-100" src="~/img/team-5.jpg" alt="">
+                        <div class="position-absolute top-100 start-50 translate-middle bg-light rounded p-2 d-flex">
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                            <a class="btn btn-primary btn-square m-1" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                        <h4 class="mb-2">Dr. John Doe</h4>
+                        <p class="text-primary mb-0">Санитар</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </section><!-- End Our Team Section -->
-
-</main><!-- End #main -->
+    </div>
+</div>

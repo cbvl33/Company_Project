@@ -72,19 +72,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Entities\Product\PDbTable\PDbDetail.cs" />
-    <Compile Include="Entities\Product\PDbTable\PDbTable.cs" />
-    <Compile Include="Entities\Product\ProductModel\ProductDetails.cs" />
     <Compile Include="Entities\Respond\LoginResponse.cs" />
-    <Compile Include="Entities\Respond\ProdResponse.cs" />
     <Compile Include="Entities\User\Models\ULoginData.cs" />
     <Compile Include="Entities\User\Models\UMinData.cs" />
     <Compile Include="Entities\User\Models\URegisterData.cs" />
     <Compile Include="Entities\User\UDbTable\ADbTable.cs" />
     <Compile Include="Entities\User\UDbTable\CDbTable.cs" />
     <Compile Include="Entities\User\UDbTable\UDbSession.cs" />
-    <Compile Include="Entities\User\UDbTable\UserDTO.cs" />
+    <Compile Include="Entities\User\UDbTable\UserDTOes.cs" />
     <Compile Include="Enums\ARole.cs" />
     <Compile Include="Enums\Experts.cs" />
     <Compile Include="Enums\Levels.cs" />

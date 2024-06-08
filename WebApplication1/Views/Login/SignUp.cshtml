@@ -1,17 +1,33 @@
-﻿@using System.Web.Optimization
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using System.Web.Optimization
 @model WebApplication1.Models.User.UserRegistration
-
 @{
-    ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_LSign.cshtml";
 }
+<!-- Hero Start -->
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+    <div class="row py-3">
+        <div class="col-12 text-center">
+            <h1 class="display-3 text-white animated zoomIn"> Регистрация</h1>
+            <a href="" class="h4 text-white">На главную</a>
 
+
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
 <!-- Contact Start -->
 <div class="container-fluid py-5">
-    <div class="container d-flex justify-content-center">
-        <div class="row g-5 justify-content-center">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.1s">
+
+            </div>
             <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+
                 <div class="row g-3">
+
                     @using (Html.BeginForm("SignUp", "Login", FormMethod.Post, new { @id = "LoginForm" }))
                     {
                         @Html.AntiForgeryToken()
@@ -31,16 +47,40 @@
                             @Html.ValidationMessageFor(x => x.UserName)
                         </div>
                         <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Фамилия</small></small></small></small></h6>
+                            <br />
+                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Фамилия", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.LastName)
+                        </div>
+                        <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Номер телефона</small></small></small></small></h6>
+                            <br />
+                            @Html.TextBoxFor(x => x.Number, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Номер телефона", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.Number)
+                        </div>
+                        <div class="group">
                             <h6 class="display-6 mb-0"><small><small><small><small>Пароль</small></small></small></small></h6>
                             <br />
                             @Html.PasswordFor(x => x.Password, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Пароль", @style = "height: 55px;" })
                             <br />
                             @Html.ValidationMessageFor(x => x.Password)
                         </div>
-                        <button class="btn w-100 py-3" type="submit" style="background-color: #3CB371; color: white;">Регистрация</button>
+                        <div class="group">
+                            <h6 class="display-6 mb-0"><small><small><small><small>Подтвердите пароль</small></small></small></small></h6>
+                            <br />
+                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control border-0 bg-light px-4", @placeholder = "Подтвердите пароль", @style = "height: 55px;" })
+                            <br />
+                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <button class="btn btn-primary w-100 py-3" type="submit">Регистрация</button>
                     }
                 </div>
             </div>
+        </div>
+        <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
+
         </div>
     </div>
 </div>

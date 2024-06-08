@@ -1,4 +1,5 @@
-﻿@using System.Web.Optimization
+﻿
+@using System.Web.Optimization
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,8 +8,13 @@
 </head>
 
 <body>
+    @Html.Partial("_Spinner")
+
+    @Html.Partial("_Topbar")
 
     @Html.Partial("_NavbarSign")
+
+    @Html.Partial("_Search")
 
     @RenderBody()
 
@@ -17,6 +23,10 @@
     @Html.Partial("_Footer")
 
 
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    @Html.Partial("_Js")
 
 </body>
 
